@@ -1,9 +1,8 @@
 package com.example.EjercicioCV.model;
 
-
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
+
 @Entity
 public class Experiencia {
 
@@ -17,9 +16,10 @@ public class Experiencia {
     @Column(columnDefinition = "TEXT")
     private String descripcion;
 
-    @Column(columnDefinition = "fecha_inicio")
+    @Column(name = "fecha_inicio")
     private LocalDate fechaInicio;
-    @Column(columnDefinition = "fecha_fin")
+
+    @Column(name = "fecha_fin")
     private LocalDate fechaFin;
 
     public Long getId() {

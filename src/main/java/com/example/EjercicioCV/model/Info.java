@@ -1,6 +1,6 @@
 package com.example.EjercicioCV.model;
-import jakarta.persistence.*;
 
+import jakarta.persistence.*;
 
 @Entity
 public class Info {
@@ -13,8 +13,10 @@ public class Info {
 
     @Column(columnDefinition = "TEXT")
     private String descripcion;
-    @Column(columnDefinition = "foto_url")
+
+    @Column(name = "foto_url")
     private String fotoUrl;
+
     private String email;
     private String linkedin;
     private String github;
@@ -59,14 +61,6 @@ public class Info {
         this.email = email;
     }
 
-    public String getGithub() {
-        return github;
-    }
-
-    public void setGithub(String github) {
-        this.github = github;
-    }
-
     public String getLinkedin() {
         return linkedin;
     }
@@ -74,5 +68,12 @@ public class Info {
     public void setLinkedin(String linkedin) {
         this.linkedin = linkedin;
     }
-}
 
+    public String getGithub() {
+        return github;
+    }
+
+    public void setGithub(String github) {
+        this.github = github;
+    }
+}

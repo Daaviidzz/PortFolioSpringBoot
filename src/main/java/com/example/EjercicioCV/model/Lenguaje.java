@@ -10,7 +10,7 @@ public class Lenguaje {
     private Long id;
 
     private String nombre;
-    @Column(columnDefinition = "icono_url")
+    @Column(name = "icono_url")
     private String iconoUrl;
 
     public String getNombre() {
