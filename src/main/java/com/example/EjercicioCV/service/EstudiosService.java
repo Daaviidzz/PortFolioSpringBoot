@@ -14,7 +14,7 @@ public class EstudiosService {
     @Autowired
     private EstudiosRepository repo;
 
-    public List<Estudios> findAll() {
+    public List<Estudios> getAll() {
         return repo.findAll(Sort.by(Sort.Direction.DESC, "fechaInicio"));
     }
 

@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
 <body>
+
+<header th:fragment="header-content" class="hero-section text-center" th:if="${info != null}">
+    <div class="container">
+        <img th:src="${info.fotoUrl}" alt="Foto Perfil" class="profile-img mb-4">
+        <h1 class="display-5 fw-bold mb-3" th:text="${info.nombre}">Nombre</h1>
+        <p class="lead mb-4 px-md-5" th:text="${info.descripcion}">Descripción</p>
+
+        <div class="hero-social d-flex justify-content-center">
+            <a th:if="${info.email != null}" th:href="'mailto:' + ${info.email}"><i class="bi bi-envelope-fill"></i></a>
+        </div>
+    </div>
+</header>
 
 </body>
 </html>

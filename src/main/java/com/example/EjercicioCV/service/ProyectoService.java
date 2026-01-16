@@ -13,7 +13,7 @@ public class ProyectoService {
     @Autowired
     private ProyectoRepository repo;
 
-    public List<Proyecto> findAll() {
+    public List<Proyecto> getAll() {
         return repo.findAll();
     }
 

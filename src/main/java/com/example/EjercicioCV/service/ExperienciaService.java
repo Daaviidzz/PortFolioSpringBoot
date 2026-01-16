@@ -14,7 +14,7 @@ public class ExperienciaService {
     @Autowired
     private ExperienciaRepository repo;
 
-    public List<Experiencia> findAll() {
+    public List<Experiencia> getAll() {
         return repo.findAll(Sort.by(Sort.Direction.DESC, "fechaInicio"));
     }
 
