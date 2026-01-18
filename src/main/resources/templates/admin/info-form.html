@@ -1,10 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Admin - Mi Perfil</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
+<div class="admin-wrapper">
+    <nav class="sidebar">
+        <div class="px-3">
+            <h4 class="fw-bold text-primary mb-0">AdminPanel</h4>
+            <p class="small text-muted mb-4" th:text="${info.nombre}">Nombre Usuario</p>
+        </div>
+        <hr class="opacity-10">
+        <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link" href="/admin"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin/proyectos"><i class="bi bi-rocket-takeoff me-2"></i> Proyectos</a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin/experiencia"><i class="bi bi-briefcase me-2"></i> Experiencia</a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin/estudios"><i class="bi bi-mortarboard me-2"></i> Estudios</a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin/lenguajes"><i class="bi bi-cpu me-2"></i> Lenguajes</a></li>
+            <li class="nav-item mt-5"><a class="nav-link text-info" href="/"><i class="bi bi-eye me-2"></i> Ver Web Pública</a></li>
+        </ul>
+    </nav>
 
+    <main class="admin-content">
+        <h2 class="fw-bold mb-4">Configuración del Perfil</h2>
+
+        <div class="custom-card shadow-sm border-0">
+            <form th:action="@{/admin/info/guardar}" th:object="${info}" method="post">
+                <input type="hidden" th:field="*{id}">
+
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Nombre Completo</label>
+                        <input type="text" th:field="*{nombre}" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">Email de contacto</label>
+                        <input type="email" th:field="*{email}" class="form-control" required>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label fw-bold">Breve biografía / Descripción</label>
+                        <textarea th:field="*{descripcion}" class="form-control" rows="5"></textarea>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">Foto URL (Local o Web)</label>
+                        <input type="text" th:field="*{fotoUrl}" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">URL LinkedIn</label>
+                        <input type="text" th:field="*{linkedin}" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fw-bold">URL GitHub</label>
+                        <input type="text" th:field="*{github}" class="form-control">
+                    </div>
+
+                    <div class="col-12 mt-5 border-top pt-4 text-end">
+                        <button type="submit" class="btn btn-primary btn-lg px-5 shadow-sm">
+                            <i class="bi bi-check-circle me-2"></i>Actualizar Perfil
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+</div>
 </body>
 </html>

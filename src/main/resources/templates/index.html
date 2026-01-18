@@ -36,7 +36,7 @@
             <section>
                 <h2 class="section-title"><i class="bi bi-rocket-takeoff-fill me-2"></i> Proyectos</h2>
                 <div class="row g-4">
-                    <div th:each="proy : ${proyectos}" class="col-md-6">
+                    <div th:each="proy : ${proyectos}" class="col-md-4">
                         <div class="custom-card project-card">
                             <img th:if="${proy.imagenUrl != null}" th:src="${proy.imagenUrl}" class="img-fluid rounded mb-3" alt="Proyecto">
                             <h4 class="h5 fw-bold" th:text="${proy.nombre}">Nombre</h4>
