@@ -139,3 +139,80 @@ body {
     text-align: center;
     font-size: 0.9rem;
 }
+
+/* --- DASHBOARD STYLES --- */
+.admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background: var(--secondary);
+    color: white;
+    padding: 2rem 1rem;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.sidebar .nav-link {
+    color: rgba(255,255,255,0.7);
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s;
+}
+
+.sidebar .nav-link:hover, .sidebar .nav-link.active {
+    background: var(--primary);
+    color: white;
+}
+
+.admin-content {
+    flex: 1;
+    padding: 2rem;
+    background-color: var(--bg-body);
+}
+
+.table-container {
+    background: white;
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-action {
+    padding: 5px 10px;
+    font-size: 0.85rem;
+    border-radius: 6px;
+}
+
+.stat-card {
+    border-left: 4px solid var(--primary);
+}
+/* Reduce el tamaño general de la tarjeta de proyecto */
+.project-card {
+    padding: 1.2rem !important; /* Menos espacio interno */
+    max-width: 350px;           /* Limita el ancho para que no se estire */
+    margin: 0 auto;             /* Centra la tarjeta en su columna */
+}
+
+/* Ajusta el título para que sea más pequeño */
+.project-card h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Ajusta el botón para que sea menos alto */
+.btn-code {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Si la imagen es un icono (como el de tu captura), esto la mantendrá centrada */
+.project-card img {
+    object-fit: contain;
+    background-color: transparent;
+}
