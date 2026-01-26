@@ -51,6 +51,7 @@
         </div>
 
         <div class="col-lg-4">
+
             <section class="mb-5">
                 <h2 class="section-title"><i class="bi bi-mortarboard-fill me-2"></i> Formación</h2>
                 <div th:each="est : ${estudios}" class="custom-card">
@@ -62,7 +63,7 @@
                 </div>
             </section>
 
-            <section>
+            <section class="mb-5">
                 <h2 class="section-title"><i class="bi bi-cpu-fill me-2"></i> Stack</h2>
                 <div class="d-flex flex-wrap gap-2">
                     <div th:each="len : ${lenguajes}" class="skill-tag">
@@ -71,11 +72,36 @@
                     </div>
                 </div>
             </section>
+
+            <section>
+                <h2 class="section-title"><i class="bi bi-envelope-at-fill me-2"></i> Contacto</h2>
+                <div class="custom-card contact-card">
+                    <form th:action="@{/email/send}" method="post">
+                        <div class="mb-3">
+                            <label for="to" class="form-label small fw-bold">Para:</label>
+                            <input type="email" name="to" id="to" class="form-control custom-input" placeholder="correo@ejemplo.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label small fw-bold">Asunto:</label>
+                            <input type="text" name="subject" id="subject" class="form-control custom-input" placeholder="Asunto del correo" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="body" class="form-label small fw-bold">Mensaje:</label>
+                            <textarea name="body" id="body" class="form-control custom-input" rows="4" placeholder="¿En qué puedo ayudarte?" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-send w-100">
+                            <i class="bi bi-send-fill me-2"></i> Enviar
+                        </button>
+                    </form>
+                </div>
+            </section>
+
         </div>
     </div>
 </main>
 
 <div th:replace="~{fragments/footer :: footer-content}"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

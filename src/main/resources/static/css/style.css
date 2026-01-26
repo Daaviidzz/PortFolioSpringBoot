@@ -234,3 +234,50 @@ body {
     object-fit: contain;
     background-color: transparent;
 }
+/* --- ESTILOS FORMULARIO DE CONTACTO --- */
+.contact-card {
+    border-top: 4px solid var(--primary); /* Resalte superior en azul */
+}
+
+.custom-input {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: var(--text-main);
+    font-size: 0.9rem;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.custom-input:focus {
+    background-color: var(--white);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    outline: none;
+}
+
+.btn-send {
+    background-color: var(--primary);
+    color: var(--white);
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn-send:hover {
+    background-color: #2563eb; /* Un azul un poco más oscuro */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-send:active {
+    transform: translateY(0);
+}
+
+/* Ajuste para etiquetas de formulario */
+.form-label {
+    color: var(--secondary);
+    margin-bottom: 0.4rem;
+}
