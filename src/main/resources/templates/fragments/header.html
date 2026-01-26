@@ -8,8 +8,18 @@
         <h1 class="display-5 fw-bold mb-3" th:text="${info.nombre}">Nombre</h1>
         <p class="lead mb-4 px-md-5" th:text="${info.descripcion}">Descripción</p>
 
-        <div class="hero-social d-flex justify-content-center">
-            <a th:if="${info.email != null}" th:href="'mailto:' + ${info.email}"><i class="bi bi-envelope-fill"></i></a>
+        <div class="hero-social d-flex justify-content-center gap-3">
+            <a th:if="${info.email != null}" th:href="'mailto:' + ${info.email}" title="Email">
+                <i class="bi bi-envelope-fill"></i>
+            </a>
+
+            <a th:if="${info.linkedin != null}" th:href="${info.linkedin}" target="_blank" title="LinkedIn">
+                <i class="bi bi-linkedin"></i>
+            </a>
+
+            <a th:if="${info.github != null}" th:href="${info.github}" target="_blank" title="GitHub">
+                <i class="bi bi-github"></i>
+            </a>
         </div>
     </div>
 </header>

@@ -10,21 +10,25 @@
 </head>
 <body>
 
+<div id="scroll-progress"></div>
+<button id="back-to-top" class="btn-top">
+    <i class="bi bi-arrow-up"></i>
+</button>
+
 <div th:replace="~{fragments/header :: header-content}"></div>
 
 <main class="container mb-5">
     <div class="row">
         <div class="col-lg-8 pe-lg-5">
-
             <section class="mb-5">
                 <h2 class="section-title"><i class="bi bi-briefcase-fill me-2"></i> Experiencia</h2>
                 <div th:each="exp : ${experiencias}" class="custom-card">
                     <div class="d-flex justify-content-between align-items-start flex-wrap">
                         <div>
-                            <h3 class="card-role" th:text="${exp.puesto}">Puesto</h3>
+                            <h3 class="card-role" style="color: var(--primary); font-weight:700;" th:text="${exp.puesto}">Puesto</h3>
                             <span class="fw-bold text-dark" th:text="${exp.empresa}">Empresa</span>
                         </div>
-                        <span class="badge bg-light text-dark border mt-1">
+                        <span class="badge bg-light text-dark border">
                                 <span th:text="${exp.fechaInicio}">2022</span> /
                                 <span th:text="${exp.fechaFin != null ? exp.fechaFin : 'Actual'}">Actual</span>
                             </span>
@@ -37,12 +41,12 @@
                 <h2 class="section-title"><i class="bi bi-rocket-takeoff-fill me-2"></i> Proyectos</h2>
                 <div class="row g-4">
                     <div th:each="proy : ${proyectos}" class="col-md-4">
-                        <div class="custom-card project-card">
-                            <img th:if="${proy.imagenUrl != null}" th:src="${proy.imagenUrl}" class="img-fluid rounded mb-3" alt="Proyecto">
+                        <div class="custom-card project-card text-center">
+                            <img th:if="${proy.imagenUrl != null}" th:src="${proy.imagenUrl}" class="img-fluid" alt="Proyecto">
                             <h4 class="h5 fw-bold" th:text="${proy.nombre}">Nombre</h4>
                             <p class="small text-muted mb-4" th:text="${proy.descripcion}">Desc</p>
-                            <a th:href="${proy.githubUrl}" target="_blank" class="btn-code w-100">
-                                <i class="bi bi-github"></i> Ver Código
+                            <a th:href="${proy.githubUrl}" target="_blank" class="btn-code w-100 d-block">
+                                <i class="bi bi-github"></i> Código
                             </a>
                         </div>
                     </div>
@@ -51,22 +55,24 @@
         </div>
 
         <div class="col-lg-4">
-
             <section class="mb-5">
                 <h2 class="section-title"><i class="bi bi-mortarboard-fill me-2"></i> Formación</h2>
                 <div th:each="est : ${estudios}" class="custom-card">
-                    <h5 class="fw-bold mb-1" th:text="${est.titulo}">Título</h5>
-                    <p class="text-primary small mb-1 fw-bold" th:text="${est.institucion}">Centro</p>
+                    <h5 class="fw-bold mb-1" th:text="${est.titulo}">Título de la formación</h5>
+                    <p class="text-primary small mb-2 fw-bold" th:text="${est.institucion}">Institución o Centro</p>
+
                     <span class="card-meta">
-                            <span th:text="${est.fechaInicio}">2020</span> - <span th:text="${est.fechaFin}">2022</span>
-                        </span>
+            <i class="bi bi-calendar3 me-1"></i>
+            <span th:text="${est.fechaInicio}">2020</span>
+            <span th:if="${est.fechaFin != null}"> - <span th:text="${est.fechaFin}">2022</span></span>
+            <span th:if="${est.fechaFin == null}"> - Actualidad</span>
+        </span>
                 </div>
             </section>
-
             <section class="mb-5">
                 <h2 class="section-title"><i class="bi bi-cpu-fill me-2"></i> Stack</h2>
                 <div class="d-flex flex-wrap gap-2">
-                    <div th:each="len : ${lenguajes}" class="skill-tag">
+                    <div th:each="len : ${lenguajes}" class="skill-tag" data-bs-toggle="tooltip" th:title="${len.nombre}">
                         <img th:if="${len.iconoUrl != null}" th:src="${len.iconoUrl}" style="width:20px; height:20px;">
                         <span th:text="${len.nombre}">Java</span>
                     </div>
@@ -75,27 +81,15 @@
 
             <section>
                 <h2 class="section-title"><i class="bi bi-envelope-at-fill me-2"></i> Contacto</h2>
-                <div class="custom-card contact-card">
+                <div class="custom-card">
                     <form th:action="@{/email/send}" method="post">
-                        <div class="mb-3">
-                            <label for="to" class="form-label small fw-bold">Para:</label>
-                            <input type="email" name="to" id="to" class="form-control custom-input" placeholder="correo@ejemplo.com" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="subject" class="form-label small fw-bold">Asunto:</label>
-                            <input type="text" name="subject" id="subject" class="form-control custom-input" placeholder="Asunto del correo" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="body" class="form-label small fw-bold">Mensaje:</label>
-                            <textarea name="body" id="body" class="form-control custom-input" rows="4" placeholder="¿En qué puedo ayudarte?" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-send w-100">
-                            <i class="bi bi-send-fill me-2"></i> Enviar
-                        </button>
+                        <input type="email" name="to" class="form-control custom-input mb-3" placeholder="Tu email" required>
+                        <input type="text" name="subject" class="form-control custom-input mb-3" placeholder="Asunto" required>
+                        <textarea name="body" class="form-control custom-input mb-3" rows="3" placeholder="Mensaje" required></textarea>
+                        <button type="submit" class="btn-send w-100">Enviar Mensaje</button>
                     </form>
                 </div>
             </section>
-
         </div>
     </div>
 </main>
@@ -103,5 +97,36 @@
 <div th:replace="~{fragments/footer :: footer-content}"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Barra de progreso y Botón Volver Arriba
+    const btnTop = document.getElementById("back-to-top");
+    const scrollProgress = document.getElementById("scroll-progress");
+
+    window.onscroll = function() {
+        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        let scrolled = (winScroll / height) * 100;
+
+        // Actualizar barra
+        scrollProgress.style.width = scrolled + "%";
+
+        // Mostrar/Ocultar botón
+        if (winScroll > 400) {
+            btnTop.style.display = "block";
+        } else {
+            btnTop.style.display = "none";
+        }
+    };
+
+    btnTop.onclick = function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // Activar Tooltips de Bootstrap
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+</script>
 </body>
 </html>

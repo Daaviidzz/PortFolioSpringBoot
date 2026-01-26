@@ -3,12 +3,14 @@
 <body>
 
 <footer th:fragment="footer-content" class="main-footer">
-    <div class="container">
-        <p class="mb-1">&copy; 2026 Desarrollado con <strong>Spring Boot</strong> & <strong>Thymeleaf</strong>.</p>
-        <p class="mb-0 small">Diseñado por <span th:text="${info != null ? info.nombre : 'David'}">David</span></p>
+    <div class="container text-center">
+        <p class="mb-1">
+            &copy; 2026 Desarrollado con <strong>Spring Boot</strong> & <strong>Thymeleaf</strong>.
+        </p>
+        <p class="mb-0 small opacity-75">
+            Diseñado por <span th:text="${info != null ? info.nombre : 'David Ballestero'}">David</span>
+        </p>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </footer>
 
 </body>
