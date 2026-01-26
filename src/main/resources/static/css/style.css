@@ -1,56 +1,108 @@
 :root {
-    --primary: #3b82f6;          /* Azul brillante */
-    --secondary: #1e293b;        /* Fondo oscuro encabezado */
-    --bg-body: #f1f5f9;          /* Fondo gris muy claro */
-    --text-main: #334155;        /* Texto principal */
-    --text-light: #94a3b8;       /* Texto secundario */
+    --primary: #3b82f6;
+    --secondary: #1e293b;
+    --bg-body: #f1f5f9;
+    --text-main: #334155;
+    --text-light: #94a3b8;
     --white: #ffffff;
-    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+}
+
+/* Barra de Progreso Superior */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary), #60a5fa);
+    z-index: 10000;
+    transition: width 0.1s ease-out;
+}
+
+/* Botón Volver Arriba */
+.btn-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+}
+
+.btn-top:hover {
+    transform: scale(1.1) translateY(-5px);
+    background: var(--secondary);
 }
 
 body {
     font-family: 'Segoe UI', system-ui, sans-serif;
-    background-color: var(--bg-body);
+    background: radial-gradient(at top right, #f8fafc, #f1f5f9);
     color: var(--text-main);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* --- HEADER & HERO COMPACTO --- */
+/* Animación de entrada */
+@keyframes reveal {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+section {
+    animation: reveal 0.8s ease-out forwards;
+}
+
+/* --- HEADER --- */
 .hero-section {
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     color: var(--white);
-    /* Reducimos el relleno de 4rem a solo 1.5rem arriba y abajo */
     padding: 1.5rem 0;
-    /* Reducimos el margen inferior para que el contenido suba */
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 .profile-img {
-    /* Reducimos la imagen de 160px a 90px */
-    width: 90px;
-    height: 90px;
+    width: 75px;
+    height: 75px;
     border-radius: 50%;
     object-fit: cover;
-    /* Borde mas fino acorde al nuevo tamaño */
-    border: 3px solid rgba(255,255,255,0.2);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease;
+    border: 2px solid rgba(255,255,255,0.2);
+    margin-bottom: 0.5rem !important;
 }
 
-.profile-img:hover {
-    transform: scale(1.05);
+.hero-section h1 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hero-section p.lead {
+    font-size: 1rem;
+    max-width: 85%;
+    margin: 0 auto 1rem !important;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+.hero-social {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 .hero-social a {
-    text-decoration: none;
     color: var(--white);
-    /* Iconos un poco mas pequeños */
-    font-size: 1.2rem;
-    margin: 0 8px;
-    transition: color 0.3s;
+    font-size: 1.3rem;
+    transition: all 0.3s;
     opacity: 0.8;
 }
 
@@ -59,18 +111,7 @@ body {
     opacity: 1;
 }
 
-/* Añade esto para que el texto no se vea gigante al lado de la foto pequeña */
-.hero-section h1 {
-    font-size: 1.75rem;
-    margin-bottom: 0.2rem;
-}
-
-.hero-section p {
-    font-size: 0.95rem;
-    margin-bottom: 0.5rem;
-}
-
-/* --- SECCIONES --- */
+/* --- SECCIONES Y TARJETAS (Glassmorphism) --- */
 .section-title {
     font-weight: 800;
     color: var(--secondary);
@@ -78,54 +119,61 @@ body {
     padding-left: 15px;
     margin-bottom: 2rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
     font-size: 1.25rem;
 }
+.card-meta {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-light); /* El color gris azulado de tus variables */
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
 
-/* --- TARJETAS --- */
+/* Icono pequeño para la fecha */
+.card-meta i {
+    font-size: 0.8rem;
+    vertical-align: middle;
+}
+
 .custom-card {
-    background: var(--white);
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
-    border: none;
     box-shadow: var(--card-shadow);
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .custom-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.card-role {
-    color: var(--primary);
-    font-weight: 700;
-    font-size: 1.1rem;
-}
-
-.card-meta {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    margin-bottom: 1rem;
-    display: block;
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.9);
+    border-color: var(--primary);
 }
 
 /* --- PROYECTOS --- */
-.project-card {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+.project-card img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    margin: 0 auto 1.5rem;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover img {
+    transform: scale(1.1);
 }
 
 .btn-code {
-    margin-top: auto;
     background-color: var(--secondary);
     color: white;
     border-radius: 8px;
     padding: 8px 16px;
     text-align: center;
-    transition: background 0.3s;
+    text-decoration: none;
+    transition: 0.3s;
 }
 
 .btn-code:hover {
@@ -135,149 +183,79 @@ body {
 
 /* --- SKILLS --- */
 .skill-tag {
-    background-color: var(--white);
-    color: var(--secondary);
+    background: var(--white);
     padding: 8px 16px;
     border-radius: 50px;
     font-weight: 600;
-    font-size: 0.9rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     border: 1px solid #e2e8f0;
     display: flex;
     align-items: center;
     gap: 8px;
+    transition: 0.3s;
 }
 
-/* --- FOOTER --- */
-.main-footer {
-    background-color: var(--secondary);
-    color: var(--text-light);
-    padding: 2rem 0;
-    margin-top: auto; /* Empuja el footer al fondo */
-    text-align: center;
-    font-size: 0.9rem;
-}
-
-/* --- DASHBOARD STYLES --- */
-.admin-wrapper {
-    display: flex;
-    min-height: 100vh;
-}
-
-.sidebar {
-    width: 260px;
-    background: var(--secondary);
-    color: white;
-    padding: 2rem 1rem;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-}
-
-.sidebar .nav-link {
-    color: rgba(255,255,255,0.7);
-    padding: 0.8rem 1rem;
-    border-radius: 8px;
-    margin-bottom: 0.5rem;
-    transition: all 0.3s;
-}
-
-.sidebar .nav-link:hover, .sidebar .nav-link.active {
+.skill-tag:hover {
     background: var(--primary);
     color: white;
+    transform: scale(1.1) rotate(2deg);
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
 }
 
-.admin-content {
-    flex: 1;
-    padding: 2rem;
-    background-color: var(--bg-body);
+.skill-tag:hover img {
+    filter: brightness(0) invert(1);
 }
 
-.table-container {
-    background: white;
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    box-shadow: var(--shadow-sm);
-}
-
-.btn-action {
-    padding: 5px 10px;
-    font-size: 0.85rem;
-    border-radius: 6px;
-}
-
-.stat-card {
-    border-left: 4px solid var(--primary);
-}
-/* Reduce el tamaño general de la tarjeta de proyecto */
-.project-card {
-    padding: 1.2rem !important; /* Menos espacio interno */
-    max-width: 350px;           /* Limita el ancho para que no se estire */
-    margin: 0 auto;             /* Centra la tarjeta en su columna */
-}
-
-/* Ajusta el título para que sea más pequeño */
-.project-card h4 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-}
-
-/* Ajusta el botón para que sea menos alto */
-.btn-code {
-    padding: 6px 12px;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-
-/* Si la imagen es un icono (como el de tu captura), esto la mantendrá centrada */
-.project-card img {
-    object-fit: contain;
-    background-color: transparent;
-}
-/* --- ESTILOS FORMULARIO DE CONTACTO --- */
-.contact-card {
-    border-top: 4px solid var(--primary); /* Resalte superior en azul */
-}
-
+/* --- CONTACTO --- */
 .custom-input {
-    background-color: #f8fafc;
+    background: rgba(248, 250, 252, 0.8);
     border: 1px solid #e2e8f0;
-    color: var(--text-main);
-    font-size: 0.9rem;
     padding: 10px;
-    transition: all 0.3s ease;
-}
-
-.custom-input:focus {
-    background-color: var(--white);
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-    outline: none;
+    border-radius: 8px;
 }
 
 .btn-send {
     background-color: var(--primary);
-    color: var(--white);
+    color: white;
     border: none;
-    padding: 10px;
+    padding: 12px;
     border-radius: 8px;
     font-weight: 600;
-    font-size: 0.95rem;
-    transition: background 0.3s, transform 0.2s;
+    transition: 0.3s;
 }
 
 .btn-send:hover {
-    background-color: #2563eb; /* Un azul un poco más oscuro */
+    background-color: #2563eb;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+/* --- FOOTER --- */
+.main-footer {
+    background-color: var(--secondary); /* Color oscuro para cerrar el diseño */
+    color: var(--white);
+    padding: 2.5rem 0;
+    margin-top: auto; /* Empuja el footer al fondo de la pantalla */
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.btn-send:active {
-    transform: translateY(0);
+.main-footer strong {
+    color: var(--primary); /* Resalta Spring Boot y Thymeleaf en azul */
+    font-weight: 600;
 }
 
-/* Ajuste para etiquetas de formulario */
-.form-label {
-    color: var(--secondary);
-    margin-bottom: 0.4rem;
+.main-footer p {
+    letter-spacing: 0.5px;
+}
+
+/* Estructura para que el footer no flote si hay poco contenido */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto; /* Ocupa el espacio restante para bajar el footer */
 }
