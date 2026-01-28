@@ -259,3 +259,184 @@ body {
 main {
     flex: 1 0 auto; /* Ocupa el espacio restante para bajar el footer */
 }
+/* --- ESTILOS DE AUTENTICACIÓN (LOGIN/REGISTRO) --- */
+
+/* Forzamos que el contenedor ocupe toda la pantalla disponible */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ocupa el 100% de la altura de la ventana */
+    width: 100%;
+    padding: 20px;
+    background: var(--bg-color); /* Asegura que el fondo sea el mismo */
+}
+
+.auth-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 420px; /* Tamaño ideal para formularios */
+}
+
+.auth-card h2 {
+    text-align: center;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: var(--secondary);
+}
+
+/* Inputs con estilo moderno */
+.auth-label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: var(--text-dark);
+}
+
+.auth-input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(255, 255, 255, 0.8);
+    transition: 0.3s;
+}
+
+.auth-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+/* Botón principal */
+.btn-auth {
+    background: var(--primary);
+    color: white;
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 700;
+    border: none;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-auth:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+}
+
+/* Footer del card (enlaces) */
+.auth-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.auth-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn-back {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #64748b;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: 0.3s;
+}
+
+.btn-back:hover {
+    color: var(--text-dark);
+}
+/* --- LAYOUT DEL DASHBOARD --- */
+
+.admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f8fafc; /* Un gris muy claro para diferenciar del frontal */
+}
+
+/* Barra lateral */
+.sidebar {
+    width: 260px;
+    background: white;
+    border-right: 1px solid rgba(0,0,0,0.05);
+    padding: 2rem 1rem;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.sidebar .nav-link {
+    color: #64748b;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.sidebar .nav-link:hover {
+    background: rgba(37, 99, 235, 0.05);
+    color: var(--primary);
+}
+
+.sidebar .nav-link.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+/* Área de contenido principal */
+.admin-content {
+    flex: 1;
+    margin-left: 260px; /* El mismo ancho que la sidebar */
+    padding: 3rem;
+}
+
+/* Ajustes para las tablas del dashboard */
+.bg-white.p-4.rounded.shadow-sm {
+    border-radius: 15px !important;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.table thead th {
+    background-color: #f1f5f9;
+    color: #475569;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: none;
+    padding: 15px;
+}
+
+.table tbody td {
+    padding: 15px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* Responsive para Dashboard */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 80px;
+        padding: 2rem 0.5rem;
+    }
+    .sidebar span, .sidebar h4, .sidebar p {
+        display: none; /* Oculta texto en móviles, deja solo iconos */
+    }
+    .admin-content {
+        margin-left: 80px;
+        padding: 1.5rem;
+    }
+}

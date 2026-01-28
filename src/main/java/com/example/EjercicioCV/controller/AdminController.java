@@ -1,6 +1,7 @@
 package com.example.EjercicioCV.controller;
 
 import com.example.EjercicioCV.model.Info;
+import com.example.EjercicioCV.model.Proyecto;
 import com.example.EjercicioCV.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,10 +39,18 @@ public class AdminController {
             model.addAttribute("info", new Info());
         }
 
-        model.addAttribute("totalProyectos", proyectoService.getAll().size());
+        // Guardamos la lista en una variable para no llamar al service dos veces
+        List<Proyecto> listaProyectos = proyectoService.getAll();
+
+        // Tus líneas originales de conteo
+        model.addAttribute("totalProyectos", listaProyectos.size());
         model.addAttribute("totalExperiencias", experienciaService.getAll().size());
         model.addAttribute("totalEstudios", estudiosService.getAll().size());
         model.addAttribute("totalLenguajes", lenguajeService.getAll().size());
+
+        // --- LÍNEA AÑADIDA PARA LA TABLA ---
+        // Esto es lo que necesita el th:each="p : ${proyectos}"
+        model.addAttribute("proyectos", listaProyectos);
 
         return "admin/dashboard";
     }
